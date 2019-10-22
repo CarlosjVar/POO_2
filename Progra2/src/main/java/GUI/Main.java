@@ -4,14 +4,19 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import Clases.*;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+//import Prueba.*;
 /**
  *
  * @author Jos
  */
 public class Main extends javax.swing.JFrame {
     public boolean isClaseValida = false;
-    public Object  clase = new Object();
+    public Object  clase;
     /**
      * Creates new form Main
      */
@@ -69,7 +74,7 @@ public class Main extends javax.swing.JFrame {
         label1.setText("Digite el nombre de la clase que desea introinspeccionar:");
 
         label2.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
-        label2.setText("Bienvenido al Instroinspector de clases");
+        label2.setText("Bienvenido al Introinspector de clases");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,7 +98,7 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,18 +117,42 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        label2.getAccessibleContext().setAccessibleName("Bienvenido al Introinspector de clases");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public static void infoBox(String infoMessage, String titleBar)
+    {
+        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String entrada = "";
-        entrada = jTextField1.getText();
-        System.err.print(entrada);
+        String nombre = jTextField1.getText();
+        ArrayList <Class> temp = ClassFinder.findClassesInPackages(nombre);
+        if (temp.isEmpty()){
+            Main.infoBox("No se ha encontrado la clase indicada", "Error");
+            isClaseValida = false;
+            return;
+        }
+        if (temp.size()==1){
+            Class cls = temp.get(0);
+            try{
+            clase = cls.newInstance();
+            } 
+            catch (InstantiationException | IllegalAccessException ex) {
+                Main.infoBox("No se ha podido instanciar la clase", "Error de instanciasion");
+            }
+            isClaseValida = true;
+            Main.infoBox("Se ha encontrado la clase indicada", "Validacion exitosa");
+        }
+        else {
+            Main.infoBox("Se han encontrado varias clases", "Validacion exitosa");    
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

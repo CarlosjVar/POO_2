@@ -50,7 +50,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,8 +117,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri Light" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Bienvenido al Instroinspector de clases"/>
+        <Property name="text" type="java.lang.String" value="Bienvenido al Introinspector de clases"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Bienvenido al Introinspector de clases"/>
+      </AccessibilityProperties>
     </Component>
   </SubComponents>
 </Form>
