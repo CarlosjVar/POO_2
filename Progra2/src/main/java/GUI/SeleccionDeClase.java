@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
  * @author Jos
  */
 public class SeleccionDeClase extends javax.swing.JDialog {
-    public String opcion = "";
     /**
      * Creates new form SeleccionDeClase
      */
@@ -37,6 +36,7 @@ public class SeleccionDeClase extends javax.swing.JDialog {
             public String getElementAt(int i) { return strings[i]; }
         });
     }
+    
     
     
     /**
@@ -99,8 +99,6 @@ public class SeleccionDeClase extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        opcion = jList1.getSelectedValue();
-        this.hide();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

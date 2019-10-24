@@ -34,11 +34,6 @@ public class ClassFinder {
        return result;
     }
     
-    interface test {
-    
-        String nombre = "Hola";
-        int x = 5;
-    }
 }
 
 
