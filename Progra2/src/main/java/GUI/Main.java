@@ -8,6 +8,7 @@ import Clases.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.reflect.*;
 import javax.swing.JOptionPane;
 //import Prueba.*;
 /**
@@ -15,8 +16,8 @@ import javax.swing.JOptionPane;
  * @author Jos
  */
 public class Main extends javax.swing.JFrame {
-    public boolean isClaseValida = false;
-    public Object  clase;
+    public boolean esClaseValida = false;
+    public Class  clase;
     /**
      * Creates new form Main
      */
@@ -123,7 +124,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public static void infoBox(String infoMessage, String titleBar)
     {
-        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -136,22 +137,22 @@ public class Main extends javax.swing.JFrame {
         ArrayList <Class> temp = ClassFinder.findClassesInPackages(nombre);
         if (temp.isEmpty()){
             Main.infoBox("No se ha encontrado la clase indicada", "Error");
-            isClaseValida = false;
+            esClaseValida = false;
             return;
         }
         if (temp.size()==1){
             Class cls = temp.get(0);
-            try{
-            clase = cls.newInstance();
-            } 
-            catch (InstantiationException | IllegalAccessException ex) {
-                Main.infoBox("No se ha podido instanciar la clase", "Error de instanciasion");
-            }
-            isClaseValida = true;
+            clase = cls;
+            esClaseValida = true;
             Main.infoBox("Se ha encontrado la clase indicada", "Validacion exitosa");
         }
         else {
-            Main.infoBox("Se han encontrado varias clases", "Validacion exitosa");    
+            String opcion = "Hola";
+            SeleccionDeClase selector = new SeleccionDeClase();
+            selector.setVisible(true);
+            selector.fillJList(temp);
+            opcion = selector.opcion;
+            System.err.println(opcion);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

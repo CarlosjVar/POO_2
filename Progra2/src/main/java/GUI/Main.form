@@ -119,9 +119,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Bienvenido al Introinspector de clases"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Bienvenido al Introinspector de clases"/>
-      </AccessibilityProperties>
     </Component>
   </SubComponents>
 </Form>
