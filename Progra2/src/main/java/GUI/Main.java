@@ -8,6 +8,7 @@ import Clases.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.reflect.*;
 import javax.swing.JOptionPane;
 //import Prueba.*;
 /**
@@ -15,8 +16,9 @@ import javax.swing.JOptionPane;
  * @author Jos
  */
 public class Main extends javax.swing.JFrame {
-    public boolean isClaseValida = false;
-    public Object  clase;
+    public boolean esClaseValida = false;
+    public Class  clase;
+    public ArrayList <Class> superclases = new ArrayList();
     /**
      * Creates new form Main
      */
@@ -123,36 +125,53 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public static void infoBox(String infoMessage, String titleBar)
     {
-        JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    
+    private void setClass (Class cls){
+        clase = cls;
+        esClaseValida = true;
+        Class x = clase;
+        Object y = new Object();
+        Class z = y.getClass();
+        ArrayList <Class> temp = new ArrayList();
+        while (true){
+            x = x.getSuperclass();
+            temp.add(x);
+            if (x == z || x == null){
+                break;
+            }else{
+            }
+        
+        }
+        superclases = temp;
+        Main.infoBox("Se ha encontrado la clase indicada", "Validacion exitosa");
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String nombre = jTextField1.getText();
         ArrayList <Class> temp = ClassFinder.findClassesInPackages(nombre);
         if (temp.isEmpty()){
             Main.infoBox("No se ha encontrado la clase indicada", "Error");
-            isClaseValida = false;
+            esClaseValida = false;
+            clase = null;
+            superclases.clear();
             return;
         }
         if (temp.size()==1){
             Class cls = temp.get(0);
-            try{
-            clase = cls.newInstance();
-            } 
-            catch (InstantiationException | IllegalAccessException ex) {
-                Main.infoBox("No se ha podido instanciar la clase", "Error de instanciasion");
-            }
-            isClaseValida = true;
-            Main.infoBox("Se ha encontrado la clase indicada", "Validacion exitosa");
+            setClass (cls);
         }
         else {
-            Main.infoBox("Se han encontrado varias clases", "Validacion exitosa");    
-        }
+            SeleccionDeClase selector = new SeleccionDeClase();
+            selector.setVisible(true);
+            selector.fillJList(temp);
+        }   String x = selector.getSelection();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
