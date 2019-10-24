@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 public class Main extends javax.swing.JFrame {
     public boolean esClaseValida = false;
     public Class  clase;
+    public ArrayList <Class> superclases = new ArrayList();
     /**
      * Creates new form Main
      */
@@ -130,7 +131,27 @@ public class Main extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    
+    private void setClass (Class cls){
+        clase = cls;
+        esClaseValida = true;
+        Class x = clase;
+        Object y = new Object();
+        Class z = y.getClass();
+        ArrayList <Class> temp = new ArrayList();
+        while (true){
+            x = x.getSuperclass();
+            temp.add(x);
+            if (x == z || x == null){
+                break;
+            }else{
+            }
+        
+        }
+        superclases = temp;
+        Main.infoBox("Se ha encontrado la clase indicada", "Validacion exitosa");
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String nombre = jTextField1.getText();
@@ -138,21 +159,18 @@ public class Main extends javax.swing.JFrame {
         if (temp.isEmpty()){
             Main.infoBox("No se ha encontrado la clase indicada", "Error");
             esClaseValida = false;
+            clase = null;
+            superclases.clear();
             return;
         }
         if (temp.size()==1){
             Class cls = temp.get(0);
-            clase = cls;
-            esClaseValida = true;
-            Main.infoBox("Se ha encontrado la clase indicada", "Validacion exitosa");
+            setClass (cls);
         }
         else {
-            String opcion = "Hola";
             SeleccionDeClase selector = new SeleccionDeClase();
             selector.setVisible(true);
             selector.fillJList(temp);
-            opcion = selector.opcion;
-            System.err.println(opcion);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
