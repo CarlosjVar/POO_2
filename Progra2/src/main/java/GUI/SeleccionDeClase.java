@@ -7,6 +7,8 @@ package GUI;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -19,17 +21,16 @@ public class SeleccionDeClase extends javax.swing.JDialog {
     /**
      * Creates new form SeleccionDeClase
      */
-
-    public String opcion = "";
+    private Main parent; 
     
 
     public SeleccionDeClase() {
         initComponents();
     }
-    public String getSelection (){
-        return opcion;
-    }
     
+    public void setParent(Main pParent){
+        this.parent = pParent;
+    }
     
     public void fillJList ( ArrayList <Class> classArray){
         int cantidad = classArray.size();
@@ -117,7 +118,9 @@ public class SeleccionDeClase extends javax.swing.JDialog {
         if ( opcionLista == null){
             SeleccionDeClase.infoBox ("Debe seleccionar una de las opciones","Error");
         }else{
-            this.opcion = opcionLista;
+            parent.setSelection(opcionLista);
+            parent.enable();
+            this.dispose();
         }  
         
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -152,10 +152,21 @@ public class Main extends javax.swing.JFrame {
         Main.infoBox("Se ha encontrado la clase indicada", "Validacion exitosa");
     }
     
+    public void setSelection (String seleccion){
+        try {
+            Class cls = Class.forName(seleccion);
+            setClass (cls);
+        } catch (ClassNotFoundException ex) {
+            Main.infoBox("No se ha encontrado la clase indicada", "Error");
+        }
+        this.enable();
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String nombre = jTextField1.getText();
         ArrayList <Class> temp = ClassFinder.findClassesInPackages(nombre);
+        Class cls;
         if (temp.isEmpty()){
             Main.infoBox("No se ha encontrado la clase indicada", "Error");
             esClaseValida = false;
@@ -164,13 +175,15 @@ public class Main extends javax.swing.JFrame {
             return;
         }
         if (temp.size()==1){
-            Class cls = temp.get(0);
+            cls = temp.get(0);
             setClass (cls);
         }
         else {
             SeleccionDeClase selector = new SeleccionDeClase();
             selector.setVisible(true);
             selector.fillJList(temp);
+            selector.setParent(this);
+            this.disable();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
