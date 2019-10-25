@@ -7,10 +7,9 @@ package GUI;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-<<<<<<< HEAD
 import javax.swing.JOptionPane;
-=======
->>>>>>> master
+
+
 
 /**
  *
@@ -20,21 +19,17 @@ public class SeleccionDeClase extends javax.swing.JDialog {
     /**
      * Creates new form SeleccionDeClase
      */
-<<<<<<< HEAD
-    public String opcion = null;
+
+    public String opcion = "";
     
-=======
->>>>>>> master
+
     public SeleccionDeClase() {
         initComponents();
     }
-    
-<<<<<<< HEAD
     public String getSelection (){
+        return opcion;
     }
     
-=======
->>>>>>> master
     
     public void fillJList ( ArrayList <Class> classArray){
         int cantidad = classArray.size();
@@ -52,14 +47,11 @@ public class SeleccionDeClase extends javax.swing.JDialog {
         });
     }
     
-<<<<<<< HEAD
     public static void infoBox(String infoMessage, String titleBar)
     {
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
-=======
-    
->>>>>>> master
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,7 +113,6 @@ public class SeleccionDeClase extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
         String opcionLista = jList1.getSelectedValue();
         if ( opcionLista == null){
             SeleccionDeClase.infoBox ("Debe seleccionar una de las opciones","Error");
@@ -129,8 +120,6 @@ public class SeleccionDeClase extends javax.swing.JDialog {
             this.opcion = opcionLista;
         }  
         
-=======
->>>>>>> master
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

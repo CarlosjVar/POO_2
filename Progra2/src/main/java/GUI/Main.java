@@ -171,11 +171,7 @@ public class Main extends javax.swing.JFrame {
             SeleccionDeClase selector = new SeleccionDeClase();
             selector.setVisible(true);
             selector.fillJList(temp);
-<<<<<<< HEAD
-        }   String x = selector.getSelection();
-=======
         }
->>>>>>> master
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -184,6 +180,13 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        if (!esClaseValida){
+            Main.infoBox("Debe validar una clase antes de generar el API", "Error");
+            return;
+        }
+        Jerarquia herencia = new Jerarquia();
+        herencia.setVisible(true);
+        herencia.fillJList(superclases,clase);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
