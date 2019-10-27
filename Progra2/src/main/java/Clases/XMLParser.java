@@ -7,7 +7,10 @@ package Clases;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
+import java.security.Policy.Parameters;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -39,19 +42,29 @@ public class XMLParser {
         Element root = document.createElement("Clase");
         Attr name=document.createAttribute("Nombre");
         name.setNodeValue(clase.getSimpleName().toString());
+        Attr paquete=document.createAttribute("Paquete");
+        paquete.setNodeValue(clase.getPackage().toString());
+        root.setAttributeNode(name);
         document.appendChild(root);
         Element superC=document.createElement("SuperClases");
         root.appendChild(superC);
         for (int i = 0; i < Superclases.size(); i++) {
 		Element superclase=document.createElement("Clase");
-                Attr paquete = document.createAttribute("Package");
+                Attr paquetes = document.createAttribute("Paquete");
+                try
+                {             
                 paquete.setValue(Superclases.get(i).getPackage().getName().toString());
+                }
+                catch(Exception e)
+                        {
+                            
+                        }
                 Attr cla=document.createAttribute("Clase");
                 cla.setValue(Superclases.get(i).getSimpleName().toString());
                 superclase.setAttributeNode(paquete);
                 superclase.setAttributeNode(cla);
-                superC.appendChild(superclase);
-		}
+                superC.appendChild(superclase);                               
+        }          
         Class[]  interfaces=clase.getInterfaces();
         Element interF=document.createElement("Interfaces");
         root.appendChild(interF);
@@ -101,7 +114,42 @@ public class XMLParser {
             Attr type=document.createAttribute("Tipo");
             type.setNodeValue(eo.getType().toString());
             atrib.setAttributeNode(type);
+            Attr vis=document.createAttribute("Visibilidad");
+            vis.setNodeValue(eo.getType().getSimpleName());
             atributos.appendChild(atrib);
+        }
+        Method[] metodos=clase.getDeclaredMethods();
+        Element methods=document.createElement("Metodos");
+        root.appendChild(methods);
+        for(Method metodo:metodos)
+        {   
+            Element metods=document.createElement("Metodo");
+            Attr nom=document.createAttribute("Nombre");
+            nom.setNodeValue(metodo.getName());
+            Attr vis=document.createAttribute("Visibilidad");
+            vis.setNodeValue(Modifier.toString(metodo.getModifiers()));
+            Element para=document.createElement("Parametros");
+            metods.appendChild(para);
+            Parameter[]atribute=metodo.getParameters();
+            for(Parameter param:atribute)
+            {
+                Element paras=document.createElement("Parametro");
+                Attr na=document.createAttribute("Nombre");
+                na.setNodeValue(param.getName());
+                Attr type=document.createAttribute("Tipo");
+                type.setNodeValue(param.getType().getSimpleName());
+                paras.setAttributeNode(na);
+                paras.setAttributeNode(type);
+                
+                para.appendChild(paras);                            
+            }
+            Element retorno=document.createElement("Retorno");
+            retorno.setAttribute("_",metodo.getReturnType().getSimpleName());
+            metods.appendChild(retorno);
+            metods.setAttributeNode(nom);
+            metods.setAttributeNode(vis);
+        
+            methods.appendChild(metods);
         }
         root.appendChild(cons);
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
