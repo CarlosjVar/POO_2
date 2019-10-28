@@ -5,11 +5,26 @@
  */
 package Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Jos
  */
-public class test {
-   String nombre;
-   int x;
+ class test {
+   public String nombre;
+   public final int x;
+   
+   public test(int hola, String hola2){
+       this.x=hola;
+       this.nombre=hola2;
+   }
+   public static int existir(String parametro1, float parametro2){
+       
+      return 54; 
+   }
+   private static final Object existir2(Class clase, ArrayList<int> array){
+       return null;
+       
+   }
 }
