@@ -20,47 +20,18 @@ public class Interfaces extends javax.swing.JFrame {
     }
     public void fillJlist(ArrayList<Class> interfaces)
     {
+       String [] nombres=new String[interfaces.size()] ;
        for(int i =0;i<interfaces.size();i++)
        {
-           
+           nombres[i]=interfaces.get(i).getSimpleName();
        }
-    }
-    public ArrayList<Class> ListaInterfaces(Class clase,ArrayList <Class> classArray)
-    {
-        boolean encontrado;
-        ArrayList <Class> interfaces = new ArrayList <Class>();
-        Class [] clasebase=clase.getInterfaces();
-        for(Class inter:clasebase)
-        {
-        interfaces.add(inter);
-        }
-        for(int i=0;i<classArray.size();i++)
-        {
-            Class[] interfac=classArray.get(i).getInterfaces();
-            for(Class inte:interfac)
-            {
-                encontrado=false;
-                for (int o=0;o<interfaces.size();o++)
-                {
-                    if(inte==interfaces.get(o))
-                    {
-                        encontrado=true;
-                    }
-                }
-                if(!encontrado)
-                {
-                    interfaces.add(inte);
-                    System.out.print("Se ha insertado una interfaz");
-                }
-                else
-                {
-                    System.out.print("Es repetido");
-                }
-            }
-        }
-        
-        
-        return interfaces;
+            jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = nombres;
+            @Override
+            public int getSize() { return strings.length; }
+            @Override
+            public String getElementAt(int i) { return strings[i]; }
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,7 +48,7 @@ public class Interfaces extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel1.setText("Interfaces implementadas en las clases");
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -91,21 +62,21 @@ public class Interfaces extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(92, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(170, Short.MAX_VALUE))
+                    .addComponent(jLabel1))
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();

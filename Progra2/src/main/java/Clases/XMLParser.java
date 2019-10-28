@@ -25,10 +25,10 @@ import org.w3c.dom.Element;
 import java.util.ArrayList;
 /**
  *
- * @author carlo
+ * @author carlos
  */
 public class XMLParser {
-    public static final String xmlFilePath = "D:\\Universidad\\XML.xml";
+    public static final String xmlFilePath = "..\\Progra2\\XML\\XML.xml";
     public static void  GenerarXML(ArrayList <Class> Superclases,Class clase)
     {
         try{
@@ -56,9 +56,7 @@ public class XMLParser {
                 paquete.setValue(Superclases.get(i).getPackage().getName().toString());
                 }
                 catch(Exception e)
-                        {
-                            
-                        }
+                        {                                            }
                 Attr cla=document.createAttribute("Clase");
                 cla.setValue(Superclases.get(i).getSimpleName().toString());
                 superclase.setAttributeNode(paquete);
@@ -94,7 +92,7 @@ public class XMLParser {
                 nom.setNodeValue(parametro.getName());
                 par.setAttributeNode(nom);
                 Attr type=document.createAttribute("Tipo");
-                type.setNodeValue(parametro.getType().toString());    
+                type.setNodeValue(parametro.getType().getSimpleName());    
                 par.setAttributeNode(type);
                 para.appendChild(par);
             }           
@@ -120,7 +118,7 @@ public class XMLParser {
         }
         Method[] metodos=clase.getDeclaredMethods();
         Element methods=document.createElement("Metodos");
-        root.appendChild(methods);
+
         for(Method metodo:metodos)
         {   
             Element metods=document.createElement("Metodo");
@@ -152,6 +150,7 @@ public class XMLParser {
             methods.appendChild(metods);
         }
         root.appendChild(cons);
+        root.appendChild(methods);
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource domSource = new DOMSource(document);

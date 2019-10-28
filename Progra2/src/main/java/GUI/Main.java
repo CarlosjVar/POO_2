@@ -200,10 +200,7 @@ public class Main extends javax.swing.JFrame {
         Jerarquia herencia = new Jerarquia();
         herencia.setVisible(true);
         herencia.fillJList(superclases,clase);
-        Interfaces inter=new Interfaces();
-        inter.setVisible(true);
-        inter.ListaInterfaces(clase, superclases);
-        
+        herencia.fillJList2(clase, superclases);
         infoClass info= new infoClass();
         info.setVisible(true);
         info.fillTable(clase);
