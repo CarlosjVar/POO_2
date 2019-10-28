@@ -193,7 +193,6 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         if (!esClaseValida){
             Main.infoBox("Debe validar una clase antes de generar el API", "Error");
             return;
@@ -205,6 +204,9 @@ public class Main extends javax.swing.JFrame {
         inter.setVisible(true);
         inter.ListaInterfaces(clase, superclases);
         
+        infoClass info= new infoClass();
+        info.setVisible(true);
+        info.fillTable(clase);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
