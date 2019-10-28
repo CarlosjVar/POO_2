@@ -26,9 +26,12 @@ public class ClassFinder {
             x = paquete;
             try {
                 Class cls = Class.forName(x.getName()+"."+pNombre);
-                result.add(cls);
+                if (!cls.isInterface())
+                    result.add(cls);
             }
             catch(ClassNotFoundException e){
+            }
+            catch (NoClassDefFoundError e){
             }
         }
        return result;

@@ -23,8 +23,4 @@ import java.util.ArrayList;
        
       return 54; 
    }
-   private static final Object existir2(Class clase, ArrayList<int> array){
-       return null;
-       
-   }
-}
+ }
