@@ -6,6 +6,7 @@
 package GUI;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -19,33 +20,38 @@ public class Jerarquia extends javax.swing.JFrame {
     public Jerarquia() {
         initComponents();
     }
-        public ArrayList<Class> ListaInterfaces(Class clase,ArrayList <Class> classArray)
+        public ArrayList<ArrayList> ListaInterfaces(Class clase,ArrayList <Class> classArray)
     {
+        ArrayList<ArrayList> general = new ArrayList<ArrayList>();
         boolean encontrado;
-        ArrayList <Class> interfaces = new ArrayList <Class>();
+        ArrayList <Class> interfacesSup = new ArrayList <Class>();
+        ArrayList <Class> interfacesHij=new ArrayList <Class>();
         Class [] clasebase=clase.getInterfaces();
         for(Class inter:clasebase)
         {
-        interfaces.add(inter);
+        interfacesSup.add(inter);
         }
         for(int i=0;i<classArray.size();i++)
         {
-            System.out.print("Una superclase");
             System.out.print(classArray.size());
+            if((classArray.size()!=1))
+            {
+                System.out.print("Tengo más de una superclase");
             Class[] interfac=classArray.get(i).getInterfaces();
             for(Class inte:interfac)
             {
+                System.out.print("Adios");
                 encontrado=false;
-                for (int o=0;o<interfaces.size();o++)
+                for (int o=0;o<interfacesSup.size();o++)
                 {
-                    if(inte==interfaces.get(o))
+                    if(inte==interfacesSup.get(o))
                     {
                         encontrado=true;
                     }
                 }
                 if(!encontrado)
                 {
-                    interfaces.add(inte);
+                    interfacesHij.add(inte);
                     System.out.print("Se ha insertado una interfaz");
                 }
                 else
@@ -53,17 +59,40 @@ public class Jerarquia extends javax.swing.JFrame {
                     System.out.print("Es repetido");
                 }
             }
-        }            
-        return interfaces;
+            }
+            else
+            {
+                System.out.print("Tengo una superclase");
+                Class[] interfa=classArray.get(i).getInterfaces();   
+                for(Class inter:interfa)
+                {
+                    System.out.print("ola");
+                    interfacesHij.add(inter);
+                }
+            }
+        }
+        general.add(interfacesSup);
+        general.add(interfacesHij);
+        return general;
     }
      public void fillJList2(Class clase,ArrayList<Class> superclases)
      {
-         ArrayList<Class> interfaces=this.ListaInterfaces(clase, superclases);
-         String [] nombres=new String[interfaces.size()];
-         for(int i =0;i<interfaces.size();i++)
+         ArrayList<ArrayList> interfaces=this.ListaInterfaces(clase, superclases);
+         ArrayList<Class> supers=interfaces.get(0);
+         ArrayList<Class> normal=interfaces.get(1);
+         String []nombres=new String[supers.size()+normal.size()];
+         System.out.print(supers.size());
+         System.out.print(normal.size());
+        for(int o=0;o<normal.size();o++)
          {
-             System.out.print(interfaces.get(i).getSimpleName());
-             nombres[i]=interfaces.get(i).getSimpleName();
+             
+             nombres[o]=normal.get(o).getSimpleName();
+         }
+         for(int i =0;i<supers.size();i++)
+         {
+             String armar=supers.get(i).getSimpleName();
+             armar=armar+"<"+clase.getSimpleName()+">";
+             nombres[i+nombres.length-1]=armar;
          }
          jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = nombres;

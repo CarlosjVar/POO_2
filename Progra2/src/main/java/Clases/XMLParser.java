@@ -59,7 +59,15 @@ public class XMLParser {
                         {                                            }
                 Attr cla=document.createAttribute("Clase");
                 cla.setValue(Superclases.get(i).getSimpleName().toString());
+                try{
                 superclase.setAttributeNode(paquete);
+                }
+                catch(Exception e)
+                {
+                     Attr paquete2 = document.createAttribute("Paquete");
+                    paquete2.setValue("");
+                    superclase.setAttributeNode(paquete2);
+                }
                 superclase.setAttributeNode(cla);
                 superC.appendChild(superclase);                               
         }          
