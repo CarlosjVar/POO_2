@@ -201,6 +201,10 @@ public class Main extends javax.swing.JFrame {
         Jerarquia herencia = new Jerarquia();
         herencia.setVisible(true);
         herencia.fillJList(superclases,clase);
+        Interfaces inter=new Interfaces();
+        inter.setVisible(true);
+        inter.ListaInterfaces(clase, superclases);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
