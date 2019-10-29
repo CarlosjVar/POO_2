@@ -188,7 +188,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         XMLParser.GenerarXML(superclases, clase);
+        String filePath = "..\\Progra2\\XML\\"+clase.getSimpleName()+" q.xml";
+        System.err.println(filePath);
+        XMLParser.GenerarXML(superclases, clase, filePath);
                     
     }//GEN-LAST:event_jButton2ActionPerformed
 

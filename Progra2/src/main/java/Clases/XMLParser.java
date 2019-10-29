@@ -28,8 +28,7 @@ import java.util.ArrayList;
  * @author carlos
  */
 public class XMLParser {
-    public static final String xmlFilePath = "..\\Progra2\\XML\\XML.xml";
-    public static void  GenerarXML(ArrayList <Class> Superclases,Class clase)
+    public static void  GenerarXML(ArrayList <Class> Superclases,Class clase, String xmlFilePath)
     {
         try{
             
@@ -106,7 +105,6 @@ public class XMLParser {
             }           
             con.setAttributeNode(nombre);
             cons.appendChild(con);
-            System.out.print("asd");
         }
         Field []fields=clase.getFields();
         Element atributos=document.createElement("Atributos");
