@@ -1,23 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Clases;
 import java.lang.*;
 import java.util.*;
 import java.io.*;
 
 /**
- *
+ * Clase encargada de buscar clases en el ámbito de ejecucion
  * @author Jos
  */
 public class ClassFinder {
     
+    /**
+    * Metodo que obtiene todos los paquetes disponibles 
+    * @return Un array de los paquetes obtenidos
+    */
     private static Package[] getAllPackages() {
         return  Package.getPackages();
     }
     
+    /**
+    * Metodo que genera un ArrayList con todas las clases del ambito de ejecucion cuyo nombre coincide con el string dado 
+    * @return Un ArrayList de las clases obtenidas
+    * @param pNombre el nombre por el cual buscar las clases
+    */
     public static ArrayList <Class> findClassesInPackages(String pNombre) {
         ArrayList <Class> result = new ArrayList();
         Package x;

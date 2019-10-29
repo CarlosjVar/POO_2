@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Clases;
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -24,10 +19,17 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import java.util.ArrayList;
 /**
- *
+ * Clase encargada de formar el archivo XML
  * @author carlos
  */
 public class XMLParser {
+    
+    /**
+     * Metodo quarda la informacion del API en un archivo XML
+     * @param Superclases El ArrayList contenedor de la linea jerarquica de superclases a guardar
+     * @param clase La clase cuya informacion (metodos,constructores,etc) se va a guardar
+     * @param xmlFilePath La ubicacion del archivo a crear
+     */
     public static void  GenerarXML(ArrayList <Class> Superclases,Class clase, String xmlFilePath)
     {
         try{

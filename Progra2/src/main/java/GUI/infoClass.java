@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import java.lang.reflect.Constructor;
@@ -14,24 +9,32 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
+/** Ventana de muestra de metodos, constructores y atributos.
  * @author Fabrizio
- */
+ * @author www.LoweWriter.com
+*/
 public class infoClass extends javax.swing.JFrame {
 
+    /**
+     * Muestra en texto la informacion de la ventana
+     * @return el string con la informacion
+     */
     @Override
     public String toString() {
         return "infoClass{" + "jScrollPane1=" + jScrollPane1 + ", jScrollPane2=" + jScrollPane2 + ", jScrollPane3=" + jScrollPane3 + ", tablaAtrib=" + tablaAtrib + ", tablaConstu=" + tablaConstu + ", tablaMet=" + tablaMet + '}';
     }
 
     /**
-     * Creates new form infoClass
+     * Crea una nueva ventana infoClass
      */
     public infoClass() {
         initComponents();
     }
 
+    /**
+     * Rellena las tablas con la informacion de la clase 
+     * @param clase la clase cuya informacion se muestra en la tabla
+     */
     public void fillTable(Class clase){
         DefaultTableModel tabla = (DefaultTableModel) tablaConstu.getModel();
         tabla.setRowCount(0);

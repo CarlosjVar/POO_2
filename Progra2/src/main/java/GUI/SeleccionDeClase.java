@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
+
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,24 +10,34 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * Ventana en la cual se realiza la seleccion de clase en caso de encontrar varias coincidencias
  * @author Jos
  */
 public class SeleccionDeClase extends javax.swing.JDialog {
     /**
-     * Creates new form SeleccionDeClase
+     *Representa a la ventana desde la cual se llama a esta clase
      */
     private Main parent; 
     
-
+    /**
+     * Crea una ventana SeleccionDeClase
+     */
     public SeleccionDeClase() {
         initComponents();
     }
     
+    /**
+     * Asigna una ventana principal como ventana padre
+     * @param pParent La nueva ventana padre
+     */
     public void setParent(Main pParent){
         this.parent = pParent;
     }
     
+    /**
+     * Rellena la lista de la ventana con los nombres de las clases
+     * @param classArray El array contenedor de las clases
+     */
     public void fillJList ( ArrayList <Class> classArray){
         int cantidad = classArray.size();
         String [] nombres = new String[cantidad];
@@ -48,6 +54,11 @@ public class SeleccionDeClase extends javax.swing.JDialog {
         });
     }
     
+    /**
+     * Metodo que llama a un cuadro de dialogo
+     * @param infoMessage el menaje a mostrar
+     * @param titleBar el titulo del cuadro de texto
+     */
     public static void infoBox(String infoMessage, String titleBar)
     {
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);

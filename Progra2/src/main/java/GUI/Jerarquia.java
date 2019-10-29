@@ -1,26 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
+ * Ventana en la cual se muestra la jerarquia de clases y el listado de interfaces 
  * @author Jos
  */
 public class Jerarquia extends javax.swing.JFrame {
 
     /**
-     * Creates new form Jerarquia
+     * Crea una nueva ventana Jerarquia
      */
     public Jerarquia() {
         initComponents();
     }
-        public ArrayList<ArrayList> ListaInterfaces(Class clase,ArrayList <Class> classArray)
+    
+    /**
+     * Crea un ArrayList de interfaces implementadas por la clase y ArrayList de superclases dado
+     * @param clase La clase base 
+     * @param classArray El array list de superclases
+     * @return El ArrayList con las interfaces
+     */
+    public ArrayList<ArrayList> ListaInterfaces(Class clase,ArrayList <Class> classArray)
     {
         ArrayList<ArrayList> general = new ArrayList<ArrayList>();
         boolean encontrado;
@@ -67,7 +69,13 @@ public class Jerarquia extends javax.swing.JFrame {
         general.add(interfacesHij);
         return general;
     }
-     public void fillJList2(Class clase,ArrayList<Class> superclases)
+    
+    /**
+     * Rellena la lista de interfaces
+     * @param clase La clase base 
+     * @param superclases El ArrayList de superclases
+     */
+    public void fillJList2(Class clase,ArrayList<Class> superclases)
      {
          ArrayList<ArrayList> interfaces=this.ListaInterfaces(clase, superclases);
          ArrayList<Class> supers=interfaces.get(0);
@@ -92,6 +100,12 @@ public class Jerarquia extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
      }
+    
+     /**
+     * Rellena la lista de superclases 
+     * @param classArray El ArrayList de superclases
+     * @param x La clase base 
+     */
      public void fillJList ( ArrayList <Class> classArray, Class x){
         int cantidad = classArray.size();
         String [] nombres;

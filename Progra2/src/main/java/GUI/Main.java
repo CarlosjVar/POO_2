@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 import Clases.*;
 import java.util.*;
@@ -10,17 +5,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.reflect.*;
 import javax.swing.JOptionPane;
-//import Prueba.*;
+
 /**
- *
+ * Ventana principal del programa
  * @author Jos
  */
 public class Main extends javax.swing.JFrame {
+    /**
+    * Boolean que indica si una clase ya ha sido validada
+    */
     public boolean esClaseValida = false;
+    /**
+    * Atributo encargado de guardar la clase a analizar
+    */
     public Class  clase;
+    /**
+    * ArrayList que contiene la linea jerarquica de superclases
+    */
     public ArrayList <Class> superclases = new ArrayList();
     /**
-     * Creates new form Main
+     * Crea una nueva ventana principal
      */
     public Main() {
         initComponents();
@@ -123,15 +127,26 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    /**
+     * Metodo que llama a un cuadro de dialogo
+     * @param infoMessage el menaje a mostrar
+     * @param titleBar el titulo del cuadro de texto
+     */
     public static void infoBox(String infoMessage, String titleBar)
     {
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
     
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
     
+    /**
+     * Asigna la clase a analizar como la clase indicada
+     * @param cls la clase a asignar
+     */
     private void setClass (Class cls){
         clase = cls;
         esClaseValida = true;
@@ -152,6 +167,10 @@ public class Main extends javax.swing.JFrame {
         Main.infoBox("Se ha encontrado la clase indicada", "Validacion exitosa");
     }
     
+    /**
+     * Metodo a ser llamado de otra ventana, asigna la clase a analizar a partir del nombre completo de clase dado
+     * @param seleccion String con el nombre completo de la clase a asignar
+     */
     public void setSelection (String seleccion){
         try {
             Class cls = Class.forName(seleccion);
