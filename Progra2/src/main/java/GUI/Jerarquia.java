@@ -33,14 +33,12 @@ public class Jerarquia extends javax.swing.JFrame {
         }
         for(int i=0;i<classArray.size();i++)
         {
-            System.out.print(classArray.size());
             if((classArray.size()!=1))
             {
-                System.out.print("Tengo más de una superclase");
             Class[] interfac=classArray.get(i).getInterfaces();
             for(Class inte:interfac)
             {
-                System.out.print("Adios");
+                
                 encontrado=false;
                 for (int o=0;o<interfacesSup.size();o++)
                 {
@@ -52,21 +50,15 @@ public class Jerarquia extends javax.swing.JFrame {
                 if(!encontrado)
                 {
                     interfacesHij.add(inte);
-                    System.out.print("Se ha insertado una interfaz");
-                }
-                else
-                {
-                    System.out.print("Es repetido");
                 }
             }
             }
             else
             {
-                System.out.print("Tengo una superclase");
                 Class[] interfa=classArray.get(i).getInterfaces();   
                 for(Class inter:interfa)
                 {
-                    System.out.print("ola");
+                    
                     interfacesHij.add(inter);
                 }
             }
@@ -81,8 +73,6 @@ public class Jerarquia extends javax.swing.JFrame {
          ArrayList<Class> supers=interfaces.get(0);
          ArrayList<Class> normal=interfaces.get(1);
          String []nombres=new String[supers.size()+normal.size()];
-         System.out.print(supers.size());
-         System.out.print(normal.size());
         for(int o=0;o<normal.size();o++)
          {
              
@@ -92,7 +82,7 @@ public class Jerarquia extends javax.swing.JFrame {
          {
              String armar=supers.get(i).getSimpleName();
              armar=armar+"<"+clase.getSimpleName()+">";
-             nombres[i+nombres.length-1]=armar;
+             nombres[i+normal.size()]=armar;
          }
          jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = nombres;
