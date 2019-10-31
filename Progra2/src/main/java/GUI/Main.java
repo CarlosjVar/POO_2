@@ -47,6 +47,7 @@ public class Main extends javax.swing.JFrame {
         label2 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Introspector de clases");
         setForeground(new java.awt.Color(204, 204, 204));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -122,8 +123,6 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
-
-        label2.getAccessibleContext().setAccessibleName("Bienvenido al Introinspector de clases");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

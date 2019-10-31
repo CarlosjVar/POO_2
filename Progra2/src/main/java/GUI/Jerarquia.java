@@ -160,6 +160,7 @@ public class Jerarquia extends javax.swing.JFrame {
         jList2 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Jerarquia e Interfaces");
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = {};

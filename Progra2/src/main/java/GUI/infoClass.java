@@ -106,6 +106,7 @@ public class infoClass extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Constructores, metodos y atributos");
 
         tablaConstu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
